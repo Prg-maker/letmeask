@@ -1,5 +1,9 @@
 import {useHistory} from "react-router-dom"
-import {auth, firebase} from "../services/firebase"
+import { useContext } from "react"
+
+
+import { AuthContext } from "../context/AuthContext"
+import { useAuth } from "../hooks/useAuth"
 
 import illustrationImg from "../assets/images/illustration.svg"
 import logoImg from "../assets/images/logo.svg"
@@ -16,17 +20,15 @@ import '../styles/auth.scss'
 
 export function Home(){
     const history = useHistory()
+    const { user ,singWithGoogle } = useAuth()
 
-    function handleCreateRoom(){
-        const provider = new firebase.auth.GoogleAuthProvider()
+  
+    async function handleCreateRoom(){
 
-        auth.signInWithPopup(provider).then(result =>{
-
-            
-            history.push('/rooms/new')
-
-        })
-
+        if(!user){
+            await singWithGoogle()
+        }
+        history.push('/rooms/new')
     } 
 
 
@@ -34,7 +36,7 @@ export function Home(){
         <div id="page-auth">
             <aside>
                 <img src={illustrationImg} alt="Ilustraçao simbolizando perguntas e respostas" />
-                <strong>Crie salas de Q&amp;A ap-vivo</strong>
+                <strong>Crie salas de Q&amp;A ao-vivo</strong>
                 <p>Tire as dúvidas da sua audiência em tempo-real</p>
             </aside>
 

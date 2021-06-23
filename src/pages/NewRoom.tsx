@@ -6,19 +6,28 @@ import logoImg from "../assets/images/logo.svg"
 import googleIconImg from "../assets/images/google-icon.svg"
 
 import { Button } from "../components/Button"
+//import { useAuth } from "../hooks/useAuth"
+
 
 
 import '../styles/auth.scss'
+//import { useContext } from "react"
+//import { AuthContext } from "../context/AuthContext"
 
 //webpack
 // Module Bundler
 
 export function NewRoom(){
+
+
+    //const {user} = useAuth()
+    
+
     return(
         <div id="page-auth">
             <aside>
                 <img src={illustrationImg} alt="Ilustraçao simbolizando perguntas e respostas" />
-                <strong>Crie salas de Q&amp;A ap-vivo</strong>
+                <strong>Crie salas de Q&amp;A ao-vivo</strong>
                 <p>Tire as dúvidas da sua audiência em tempo-real</p>
             </aside>
 
